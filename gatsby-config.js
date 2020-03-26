@@ -21,8 +21,8 @@ module.exports = {
         theme_color: `#6b37bf`,
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
-        display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        display: `standalone`, 
+        // This path is relative to the root of the site.
       },
     },
     {
@@ -42,5 +42,24 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+    resolve: `gatsby-source-twitter`,
+      options: {
+        credentials: {
+          consumer_key: process.env.TWITTER_CONSUMER_KEY,
+          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+          bearer_token: process.env.TWITTER_BEARER_TOKEN,
+        },
+        queries: {
+          singleTweet: {
+            endpoint: "statuses/show",
+            params: {
+              id: "1210148827144937479",
+              tweet_mode: "extended",
+            },
+          },
+        },
+      },
+    }
   ],
 }
